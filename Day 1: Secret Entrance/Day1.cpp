@@ -11,23 +11,23 @@ int main(){
     while (getline(myFile, line)){
         int number = 0;
         number = line[1] - '0';
-        if (line.size() > 2)
+        if (line.size() == 3)
             number = number * 10 + (line[2] - '0');
+        if (line.size() == 4){
+            number = number * 10 + (line[2] - '0');
+            number = number * 10 + (line[3] - '0');
+        }
         if (line[0] == 'L'){
-            result += number;
-            if (result < 0){
-                result %= 100;
-            }
+            result -= number;
+            result = ((result % 100) + 100) % 100;
         }
         if (line[0] == 'R'){
-            result -= number;
-            if (result > 99){
-                result = (result % 100 + 100) % 100;
-            }
+            result += number;
+            result %= 100;
         }
         if (result == 0)
             count++;
-    }
+    } 
     std::cout << count << std::endl;
     myFile.close();
     return 0;
