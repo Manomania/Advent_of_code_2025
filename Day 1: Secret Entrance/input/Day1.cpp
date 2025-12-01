@@ -14,15 +14,15 @@ int main(){
         if (line.size() > 2)
             number = number * 10 + (line[2] - '0');
         if (line[0] == 'L'){
-            result -= number;
+            result += number;
             if (result < 0){
-                result = (result % 100 + 100) % 100;
+                result %= 100;
             }
         }
         if (line[0] == 'R'){
-            result += number;
+            result -= number;
             if (result > 99){
-                result %= 100;
+                result = (result % 100 + 100) % 100;
             }
         }
         if (result == 0)
